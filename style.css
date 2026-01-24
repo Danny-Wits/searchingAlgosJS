@@ -1,0 +1,45 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+#controls {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1;
+}
+
+#controls button {
+  border: none;
+  padding: 10px;
+  min-width: 100px;
+  background-color: #eee;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgb(255, 255, 255);
+  cursor: pointer;
+}
+#controls button:active {
+  background-color: #ffffff;
+  box-shadow: 3px 2px 5px rgb(255, 255, 255);
+}
+#controls button:hover {
+  background-color: #ffffff;
+  box-shadow: 3px 2px 5px rgb(255, 255, 255);
+}
+
+#controls p {
+  margin: 0;
+  padding: 0;
+  color: #eee;
+  font-family: fantasy;
+}
