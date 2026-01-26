@@ -90,7 +90,6 @@ The algorithm will:
 ## Future Enhancements
 
 - Additional algorithms (A\*, Dijkstra, Greedy Best-First)
-- Weight-based grids
 
 ---
 

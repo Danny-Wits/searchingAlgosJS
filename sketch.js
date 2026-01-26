@@ -30,7 +30,6 @@ function setup() {
   canvas.parent(canvasContainer);
   setUpControls();
   setMap(backupMap);
-  setUpStartEnd();
 }
 function setUpStartEnd() {
   map.boxes.forEach((box) => {
@@ -47,7 +46,6 @@ function setUpControls() {
   sizeSlider.input(() => {
     size = sizeSlider.value();
     setMap();
-    setUpStartEnd();
   });
   brushSizeSlider = createSlider(5, 100, 1, 1);
   sleepTimeSlider = createSlider(0, 1000, 1, 1);
@@ -142,14 +140,13 @@ function resetMap() {
   setMap();
 }
 function setMap(boxData) {
-  startBox = null;
-  endBox = null;
   box_size = min(width - offsetX, height - offsetY) / size;
   map = new Grid(size, size);
   if (boxData) {
     map.setBoxData(boxData);
   }
   background(BACKGROUND);
+  setUpStartEnd();
   map.draw();
 }
 function isMobile() {
