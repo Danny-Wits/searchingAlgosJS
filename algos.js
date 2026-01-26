@@ -6,7 +6,9 @@ async function BFS(map, start, end) {
   let parents = new Map();
   while (queue.length > 0) {
     const current = queue.shift();
-
+    if (current === end) {
+      return parents;
+    }
     const neighbors = map.getNeighbors(current);
     for (let neighbor of neighbors) {
       if (!visited.has(neighbor.index)) {
@@ -28,6 +30,9 @@ async function DFS(map, start, end) {
   let visited = new Set([start.index]);
   while (queue.length > 0) {
     const current = queue.pop();
+    if (current === end) {
+      return parents;
+    }
     const neighbors = map.getNeighbors(current);
     for (let neighbor of neighbors) {
       if (!visited.has(neighbor.index)) {
