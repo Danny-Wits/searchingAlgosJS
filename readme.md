@@ -5,7 +5,13 @@
 SAVAGE is an interactive, grid-based visualization tool for exploring classic searching and pathfinding algorithms. It allows users to construct environments, place obstacles, configure traversal rules, and visually observe algorithm behavior step by step.
 
 ---
+## Preview
+[Live Link](https://danny-wits.github.io/searchingAlgosJS/)
+| Mobile | Desktop |
+| :--- | :---: |
+|<img width="450" height="919" alt="image" src="https://github.com/user-attachments/assets/e88f9077-601e-461c-bcf7-7e9f2be4ed70" /> | <img width="1891" height="901" alt="image" src="https://github.com/user-attachments/assets/f8560220-874a-4ad5-a74b-6213ef4d6eb8" /> |
 
+---
 ## Features
 
 - Interactive grid-based search space
