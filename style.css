@@ -2,44 +2,122 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
-
+* {
+  font-family: "Courier New", Courier, monospace;
+  box-sizing: border-box;
+}
 canvas {
   display: block;
 }
-
+.title {
+  font-size: 2rem;
+}
+.heading {
+  padding: 1px 10px;
+}
+.section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  height: 95vh;
+}
+#canvasContainer {
+  width: 60%;
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #controls {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  padding: 5px;
+  width: 20%;
+  min-width: 220px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   z-index: 1;
 }
 
-#controls button {
+#controls > button {
   border: none;
   padding: 10px;
   min-width: 100px;
+  margin-bottom: 4px;
   background-color: #eee;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgb(255, 255, 255);
   cursor: pointer;
 }
-#controls button:active {
+#controls > button:active {
   background-color: #ffffff;
-  box-shadow: 3px 2px 5px rgb(255, 255, 255);
 }
-#controls button:hover {
+#controls > button:hover {
   background-color: #ffffff;
-  box-shadow: 3px 2px 5px rgb(255, 255, 255);
 }
-
+#modeGroup {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  button {
+    flex-grow: 1;
+    padding: 6px 10px;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+  }
+  button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
 #controls p {
   margin: 0;
   padding: 0;
   color: #eee;
-  font-family: fantasy;
+}
+
+#obstacle.activeMode {
+  background-color: #000000;
+  color: white;
+}
+#start.activeMode {
+  background-color: #76ff76;
+}
+#end.activeMode {
+  background-color: #5757ff;
+}
+.activeMode {
+  background-color: black;
+  color: white;
+}
+footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 14px;
+  color: #dad7d7;
+  a {
+    color: white;
+  }
+}
+@media (max-width: 720px) {
+  .section {
+    flex-direction: column;
+    height: auto;
+  }
+  #canvasContainer {
+    width: 100%;
+    height: auto;
+  }
+  #controls {
+    width: 100%;
+  }
 }

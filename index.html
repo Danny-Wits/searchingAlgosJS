@@ -5,17 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>SAVage</title>
-
     <link rel="stylesheet" type="text/css" href="style.css" />
-
     <script src="libraries/p5.min.js"></script>
+
     <script src="libraries/p5.sound.min.js"></script>
   </head>
 
   <body>
-    <div id="controls"></div>
+    <main>
+      <div class="section">
+        <div id="canvasContainer"></div>
+        <div id="controls"></div>
+      </div>
+    </main>
+    <div class="heading">
+      <div class="title">SAVAGE</div>
+      <span> Searching Algorithm Visualization & Graph Engine</span>
+      <p>
+        <strong>SAVAGE</strong> is an interactive, grid-based visualization tool
+        for exploring classic searching and pathfinding algorithms. It allows
+        users to construct environments, place obstacles, configure traversal
+        rules, and visually observe algorithm behavior step by step.
+      </p>
+    </div>
+    <footer>
+      <p>
+        <strong>SAVAGE</strong> — Searching Algorithm Visualization & Graph
+        Engine
+      </p>
+      <p>
+        Developed by <strong>Danny Wits</strong> |
+        <a href="https://github.com/Danny-Wits" target="_blank">GitHub</a> |
+      </p>
+    </footer>
+
     <script src="dDrawBase.js"></script>
     <script src="maps.js"></script>
+    <script src="algos.js"></script>
     <script src="sketch.js"></script>
   </body>
 </html>

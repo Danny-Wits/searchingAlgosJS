@@ -1,31 +1,102 @@
-# SAVage
+# SAVAGE
 
-SAVage is a searching algorithm visualizer app. It is currently under construction and may not be fully functional.
+**Searching Algorithm Visualization & Graph Engine**
 
-## What is SAVage?
+SAVAGE is an interactive, grid-based visualization tool for exploring classic searching and pathfinding algorithms. It allows users to construct environments, place obstacles, configure traversal rules, and visually observe algorithm behavior step by step.
 
-SAVage is a web app that allows users to visualize different searching algorithms. It is designed to be easy to use and understand, making it a great tool for students and developers alike.
+---
 
 ## Features
 
-- Visualize different searching algorithms
-- Interactive user interface
-- Support for multiple algorithms
+- Interactive grid-based search space
+- Visual step-by-step execution of algorithms
+- Adjustable grid resolution and brush size
+- Support for diagonal and non-diagonal traversal
+- Obstacle drawing and editing
+- Start and end node placement
+- Real-time visualization controls
+- Mobile-friendly behavior
 
-## Current Status
+---
 
-SAVage is currently under construction and may not be fully functional. It is being built by a single developer and may take some time to complete.
+## Controls Overview
 
-## Future Plans
+### Mode Selection
 
-- Add more searching algorithms
-- Improve user interface
-- Increase performance
+Use the **Mode** buttons to choose how mouse interactions affect the grid:
 
-## Contributing
+- **Obstacle** – Draw or erase obstacles
+- **Start** – Place the starting node
+- **End** – Place the destination node
+- **Neighbour** – Inspect neighboring cells (default mode)
 
-If you would like to contribute to SAVage, please fork the repository and submit a pull request. I will review all pull requests and merge them into the main branch if they are suitable.
+---
 
-## License
+### Grid & Drawing Controls
 
-SAVage is licensed under the MIT license. See the LICENSE file for more information.
+| Control        | Description                                       |
+| -------------- | ------------------------------------------------- |
+| **Size**       | Adjusts grid density (rebuilds the map)           |
+| **Brush Size** | Controls obstacle drawing radius                  |
+| **Sleep Time** | Adds delay between algorithm steps (visual speed) |
+
+---
+
+### Toggles
+
+| Option              | Function                               |
+| ------------------- | -------------------------------------- |
+| **Show FPS**        | Displays rendering frame rate          |
+| **Draw Obstacles**  | Enables/disables obstacle placement    |
+| **Show Box Number** | Displays cell indices                  |
+| **Diagonal Search** | Allows diagonal movement during search |
+
+---
+
+### Algorithms
+
+Click an algorithm button to visualize its execution:
+
+- **BFS** – Breadth First Search
+- **DFS** – Depth First Search
+
+The algorithm will:
+
+1. Clear previous paths
+2. Traverse from start to end
+3. Animate visited nodes
+4. Draw the final path
+
+> Start and end nodes must be set before running any algorithm.
+
+---
+
+### Utility Buttons
+
+- **Clear** – Removes visited/path states but keeps obstacles
+- **Reset** – Rebuilds the grid entirely
+
+---
+
+## Technical Notes
+
+- Built using **p5.js**
+- Grid rendered on canvas
+- Algorithms executed asynchronously for animation
+- Designed for extensibility (additional algorithms can be added easily)
+
+---
+
+## Future Enhancements
+
+- Additional algorithms (A\*, Dijkstra, Greedy Best-First)
+- Weight-based grids
+
+---
+
+## Author
+
+**Danny Wits**  
+Software Developer | Algorithm Visualization Enthusiast
+
+- GitHub: https://github.com/Danny-Wits
