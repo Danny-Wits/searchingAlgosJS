@@ -9,9 +9,9 @@ let canvasWidth, canvasHeight;
 let CLICK_MODES = ["obstacle", "start", "end", "neighbour"];
 let clickMode = CLICK_MODES[0];
 let startBox, endBox;
-// document.oncontextmenu = function () {
-//   return false;
-// };
+document.oncontextmenu = function () {
+  return false;
+};
 
 window.onload = () => {
   size = JSON.parse(localStorage.getItem("size")) || 20;
@@ -32,6 +32,8 @@ function setup() {
   setMap(backupMap);
 }
 function setUpStartEnd() {
+  startBox = null;
+  endBox = null;
   map.boxes.forEach((box) => {
     if (box.isStart) {
       startBox = box;
@@ -40,6 +42,7 @@ function setUpStartEnd() {
       endBox = box;
     }
   });
+  console.log(startBox, endBox);
 }
 function setUpControls() {
   let sizeSlider = createSlider(1, 100, size, 1);
@@ -110,7 +113,9 @@ function setUpControls() {
       }
       map.clear();
       if (isMobile()) {
-        scrollTo(0, 0);
+        setTimeout(() => {
+          scrollTo(0, 0);
+        }, 100);
       }
       const parents = await callback(map, startBox, endBox);
       drawPath(pathFormParents(parents, startBox, endBox));

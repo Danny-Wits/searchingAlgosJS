@@ -48,7 +48,7 @@ class Box {
     if (this.isEnd) fill(this.endColor);
     if (this.isObstacle) fill(this.obstacleColor);
     if (this.isHighlighted) fill(this.highlightColor);
-    rect(this.x, this.y, box_size, box_size, 6);
+    rect(this.x, this.y, box_size, box_size, 5);
     stroke(0);
     if (showBoxNumber) {
       fill(0);
