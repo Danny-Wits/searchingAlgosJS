@@ -141,6 +141,7 @@ function setUpControls() {
 }
 function setMode(mode) {
   clickMode = mode;
+  drawObstacleCheckbox.checked(false);
   activeCheck();
 }
 function activeCheck() {

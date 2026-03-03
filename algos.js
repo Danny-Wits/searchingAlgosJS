@@ -173,8 +173,9 @@ async function sleep(time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 async function drawPath(path) {
-  for (let box of path) {
-    box.highlight();
+  for (let i = 1; i < path.length - 1; i++) {
+    const box = path[i];
+    box.highlight(false);
     await sleep(20);
   }
 }

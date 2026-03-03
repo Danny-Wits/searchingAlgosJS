@@ -1,3 +1,13 @@
+:root {
+  /* Modern Dark Palette Variables */
+  --unvisited-color: #23272e;
+  --visited-color: #3e4451;
+  --start-color: #98c379;
+  --end-color: #e06c75;
+  --obstacle-color: #181a1f;
+  --highlight-color: #61afef;
+}
+
 html,
 body {
   margin: 0;
@@ -5,20 +15,25 @@ body {
   background-color: rgb(0, 0, 0);
   color: white;
 }
+
 * {
   font-family: "Courier New", Courier, monospace;
   box-sizing: border-box;
 }
+
 canvas {
   display: block;
 }
+
 .title {
   font-size: 2rem;
 }
+
 .heading {
   margin-top: 10px;
   padding: 1px 10px;
 }
+
 .section {
   display: flex;
   flex-direction: row;
@@ -26,6 +41,7 @@ canvas {
   gap: 10px;
   height: 95vh;
 }
+
 #canvasContainer {
   width: 60%;
   height: 100%;
@@ -34,81 +50,181 @@ canvas {
   justify-content: center;
   align-items: center;
 }
+
 #controls {
   width: 20%;
   min-width: 220px;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   z-index: 1;
 }
 
+/* -------------------------
+   SLEEK STANDARD BUTTONS
+   ------------------------- */
 #controls > button {
-  border: none;
-  padding: 10px;
-  min-width: 100px;
-  margin-bottom: 4px;
-  background-color: #eee;
-  border-radius: 5px;
+  background-color: #2c313c;
+  color: #abb2bf;
+  border: 1px solid #3e4451;
+  padding: 8px 12px;
+  min-width: 90px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
 }
-#controls > button:active {
-  background-color: #ffffff;
-}
+
 #controls > button:hover {
-  background-color: #ffffff;
+  background-color: #3e4451;
+  color: #ffffff;
+  border-color: var(--highlight-color);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
+
+#controls > button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  background-color: #23272e;
+  border-color: #3e4451;
+}
+
+/* -------------------------
+   SEGMENTED MODE BUTTONS
+   ------------------------- */
 #modeGroup {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  button {
-    flex-grow: 1;
-    padding: 6px 10px;
-    border-radius: 0;
-    border: none;
-    cursor: pointer;
-    margin: 0;
-  }
-  button:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-  button:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
+  border-radius: 6px;
+  overflow: hidden; /* Keeps the rounded corners clean */
+  border: 1px solid #3e4451;
 }
+
+#modeGroup button {
+  flex-grow: 1;
+  padding: 8px 8px;
+  border-radius: 0;
+  border: none;
+  border-right: 1px solid #3e4451;
+  background-color: #2c313c;
+  color: #abb2bf;
+  cursor: pointer;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+#modeGroup button:last-child {
+  border-right: none;
+}
+
+#modeGroup button:hover {
+  background-color: #3e4451;
+  color: white;
+}
+
+/* Active State Colors for Modes */
+#obstacle.activeMode {
+  background-color: var(--obstacle-color);
+  color: white;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5); /* Makes it look pressed in */
+}
+
+#start.activeMode {
+  background-color: var(--start-color);
+  color: black;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#end.activeMode {
+  background-color: var(--end-color);
+  color: black;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.activeMode {
+  background-color: var(--highlight-color);
+  color: black;
+}
+
+/* -------------------------
+   CYBER CHECKBOXES
+   ------------------------- */
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background-color: #23272e;
+  border: 2px solid #3e4451;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  margin: 0;
+}
+label > span {
+  margin-left: 5px;
+}
+input[type="checkbox"]:hover {
+  border-color: var(--highlight-color);
+  box-shadow: 0 0 8px rgba(97, 175, 239, 0.3); /* Subtle blue glow */
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--highlight-color);
+  border-color: var(--highlight-color);
+  box-shadow: 0 0 8px rgba(97, 175, 239, 0.5); /* Stronger glow when active */
+}
+
+/* Drawing the custom checkmark using CSS */
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid #181a1f; /* Dark colored checkmark */
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* -------------------------
+   MISC STYLES
+   ------------------------- */
 #controls p {
   margin: 0;
   padding: 0;
-  color: #eee;
+  color: #abb2bf;
+  font-size: 0.9rem;
 }
 
-#obstacle.activeMode {
-  background-color: #000000;
-  color: white;
-}
-#start.activeMode {
-  background-color: #76ff76;
-}
-#end.activeMode {
-  background-color: #5757ff;
-}
-.activeMode {
-  background-color: black;
-  color: white;
-}
 footer {
   text-align: center;
   padding: 16px;
   font-size: 14px;
-  color: #dad7d7;
-  a {
-    color: white;
-  }
+  color: #5c6370;
 }
+
+footer a {
+  color: var(--highlight-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: white;
+}
+
 @media (max-width: 720px) {
   .section {
     flex-direction: column;

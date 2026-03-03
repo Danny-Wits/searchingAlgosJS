@@ -14,12 +14,12 @@ class BoxData {
   }
 }
 class Box {
-  unvisitedColor = "#eaeaea";
-  visitedColor = "#c4f6b5";
-  startColor = "#76ff76";
-  endColor = "#5757ff";
-  obstacleColor = "#000000";
-  highlightColor = "#ff00008a";
+  unvisitedColor = "#f8f9fa";
+  visitedColor = "#d1e9ff";
+  startColor = "#2ecc71";
+  endColor = "#e74c3c";
+  obstacleColor = "#020202";
+  highlightColor = "#f1c40f";
   constructor(index, x, y, Box_Data) {
     this.index = index;
     this.x = x;
@@ -60,13 +60,15 @@ class Box {
       text(this.index, this.x + 4, this.y + box_size - 4);
     }
   }
-  highlight() {
+  highlight(autoReset = true) {
     this.isHighlighted = true;
     this.draw();
-    setTimeout(() => {
-      this.isHighlighted = false;
-      this.draw();
-    }, 5000);
+    if (autoReset) {
+      setTimeout(() => {
+        this.isHighlighted = false;
+        this.draw();
+      }, 2000);
+    }
     if (oscillatorLow && !oscillatorLow.started && audioCheckbox.checked()) {
       oscillatorLow.start();
       oscillatorLow.stop(0.1);
