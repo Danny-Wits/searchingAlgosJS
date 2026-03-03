@@ -1,10 +1,12 @@
 const BACKGROUND = 0;
 let size = 20;
+/** @type {Grid} */
 let map;
 let backupMap;
 let brushSizeSlider;
 let drawObstacleCheckbox;
 let fpsCheckbox;
+let audioCheckbox;
 let canvasWidth, canvasHeight;
 let CLICK_MODES = ["obstacle", "start", "end", "neighbour"];
 let clickMode = CLICK_MODES[0];
@@ -23,6 +25,7 @@ window.addEventListener("beforeunload", () => {
   localStorage.setItem("size", size);
   localStorage.setItem("map", JSON.stringify(map.getBoxData()));
 });
+
 function setup() {
   // frameRate(10);
   setUpCanvasDimensions();
@@ -30,6 +33,14 @@ function setup() {
   canvas.parent(canvasContainer);
   setUpControls();
   setMap(backupMap);
+  //sound
+  oscillator = new p5.Oscillator("triangle");
+  oscillator.amp(0.2);
+  oscillator.freq(880);
+
+  oscillatorLow = new p5.Oscillator("sine");
+  oscillatorLow.amp(0.5);
+  oscillatorLow.freq(200);
 }
 function setUpStartEnd() {
   startBox = null;
@@ -76,6 +87,7 @@ function setUpControls() {
   diagonalSearchCheckbox.mouseClicked(() => {
     diagonalSearch = diagonalSearchCheckbox.checked();
   });
+  audioCheckbox = createCheckbox("Audio");
   const modeGroup = createDiv();
   modeGroup.id("modeGroup");
   for (let mode of CLICK_MODES) {
@@ -101,6 +113,7 @@ function setUpControls() {
   controls.child(drawObstacleCheckbox);
   controls.child(boxNumberCheckbox);
   controls.child(diagonalSearchCheckbox);
+  controls.child(audioCheckbox);
   controls.child(createP("Algorithms "));
   for (let algo of ALGOS) {
     const algoButton = createButton(algo);
@@ -118,6 +131,7 @@ function setUpControls() {
         }, 100);
       }
       const parents = await callback(map, startBox, endBox);
+      await sleep(500);
       drawPath(pathFormParents(parents, startBox, endBox));
     });
     controls.child(algoButton);
@@ -222,6 +236,7 @@ function mouseDragged() {
 
 function mouseClicked() {
   const box = getClickedBox();
+  if (drawObstacleCheckbox.checked()) return;
   if (box) {
     switch (clickMode) {
       case CLICK_MODES[0]:

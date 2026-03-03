@@ -3,6 +3,8 @@ let offsetX = 0;
 let offsetY = 0;
 let showBoxNumber = false;
 let diagonalSearch = false;
+let oscillator;
+let oscillatorLow;
 class BoxData {
   constructor(x, y) {
     this.isVisited = false;
@@ -37,6 +39,7 @@ class Box {
     };
   }
   clear() {
+    this.isHighlighted = false;
     this.isVisited = false;
     this.draw();
   }
@@ -63,7 +66,11 @@ class Box {
     setTimeout(() => {
       this.isHighlighted = false;
       this.draw();
-    }, 2000);
+    }, 5000);
+    if (oscillatorLow && !oscillatorLow.started && audioCheckbox.checked()) {
+      oscillatorLow.start();
+      oscillatorLow.stop(0.1);
+    }
   }
   toggleVisited() {
     this.setVisited(!this.isVisited);
@@ -71,6 +78,10 @@ class Box {
   setVisited(value) {
     this.isVisited = value;
     this.draw();
+    if (oscillator && !oscillator.started && audioCheckbox.checked()) {
+      oscillator.start();
+      oscillator.stop(0.1);
+    }
   }
   toggleObstacle() {
     this.setObstacle(!this.isObstacle);
@@ -95,6 +106,7 @@ function createBox(index, x, y) {
 class Grid {
   constructor(size) {
     this.size = size;
+    /**@type {Box[]} */
     this.boxes = new Array(size * size);
     for (let i = 0; i < size * size; i++) {
       let row = floor(i / size);
@@ -160,5 +172,25 @@ class Grid {
       .map((index) => this.getBox(index))
       .filter((box) => !box.isObstacle);
     return neighbors;
+  }
+
+  parseIndex(index) {
+    return createVector(floor(index / this.size), index % this.size);
+  }
+  getHeuristicValue(current, target) {
+    const cord1 = this.parseIndex(current.index);
+    const cord2 = this.parseIndex(target.index);
+    return cord1.dist(cord2);
+  }
+  getBestBox(list, valueList) {
+    let min = valueList[list[0].index];
+    let best = list[0];
+    for (let i = 1; i < list.length; i++) {
+      if (valueList[list[i].index] < min) {
+        min = valueList[list[i].index];
+        best = list[i];
+      }
+    }
+    return best;
   }
 }
