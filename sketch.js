@@ -35,12 +35,12 @@ function setup() {
   setMap(backupMap);
   //sound
   oscillator = new p5.Oscillator("triangle");
-  oscillator.amp(0.2);
+  oscillator.amp(0.5);
   oscillator.freq(880);
 
   oscillatorLow = new p5.Oscillator("sine");
-  oscillatorLow.amp(0.5);
-  oscillatorLow.freq(200);
+  oscillatorLow.amp(0.2);
+  oscillatorLow.freq(100);
 }
 function setUpStartEnd() {
   startBox = null;
@@ -62,7 +62,7 @@ function setUpControls() {
     setMap();
   });
   brushSizeSlider = createSlider(5, 100, 1, 1);
-  sleepTimeSlider = createSlider(0, 1000, 1, 1);
+  sleepTimeSlider = createSlider(0, 1000, 100, 1);
   const resetButton = createButton("Reset");
   resetButton.mousePressed(() => {
     resetMap();

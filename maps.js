@@ -51,7 +51,7 @@ class Box {
     if (this.isEnd) fill(this.endColor);
     if (this.isObstacle) fill(this.obstacleColor);
     if (this.isHighlighted) fill(this.highlightColor);
-    rect(this.x, this.y, box_size, box_size, 5);
+    rect(this.x, this.y, box_size, box_size, 3);
     stroke(0);
     if (showBoxNumber) {
       fill(0);
@@ -69,9 +69,9 @@ class Box {
         this.draw();
       }, 2000);
     }
-    if (oscillatorLow && !oscillatorLow.started && audioCheckbox.checked()) {
-      oscillatorLow.start();
-      oscillatorLow.stop(0.1);
+    if (oscillator && !oscillator.started && audioCheckbox.checked()) {
+      oscillator.start();
+      oscillator.stop(0.1);
     }
   }
   toggleVisited() {
@@ -80,9 +80,10 @@ class Box {
   setVisited(value) {
     this.isVisited = value;
     this.draw();
-    if (oscillator && !oscillator.started && audioCheckbox.checked()) {
-      oscillator.start();
-      oscillator.stop(0.1);
+
+    if (oscillatorLow && !oscillatorLow.started && audioCheckbox.checked()) {
+      oscillatorLow.start();
+      oscillatorLow.stop(0.1);
     }
   }
   toggleObstacle() {
